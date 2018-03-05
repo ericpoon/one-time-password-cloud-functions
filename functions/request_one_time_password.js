@@ -22,7 +22,9 @@ module.exports = function (req, res) {
         'Verifying your account',
         'Your code is: ' + code,
         err => {
-          if (err) {
+          const isErrNonObjectAndNonNull = (typeof err !== 'object' && err);
+          const isErrNonEmptyObject = (typeof err === 'object' && Object.keys(err).length > 0);
+          if (isErrNonObjectAndNonNull || isErrNonEmptyObject) {
             console.log('fail to send code', err);
             return res.status(422).send({ error: err });
           }
