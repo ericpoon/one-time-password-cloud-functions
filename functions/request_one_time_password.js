@@ -28,7 +28,7 @@ module.exports = function (req, res) {
           }
 
           // Save the code
-          return admin.database().ref('users/' + userRecord.uid).set({ code: code, isValid: true })
+          return admin.database().ref('users/' + userRecord.uid).set({ code: code, isCodeValid: true })
             .then(() => {
               console.log('code successfully sent');
               return res.send({ success: true });
